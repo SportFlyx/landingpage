@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>SportFlyx | Esporte, Dados e Patrocínio Inteligente</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/logos/SFundoExtend.png" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -24,9 +25,9 @@
             ink: { base: "#07030F" }
           },
           boxShadow: {
-            glowP: "0 0 0 1px rgba(152,55,171,.28), 0 22px 70px rgba(152,55,171,.22)",
-            glowG: "0 0 0 1px rgba(108,161,52,.22), 0 22px 70px rgba(108,161,52,.18)",
-            glowY: "0 0 0 1px rgba(240,213,72,.22), 0 22px 70px rgba(240,213,72,.14)"
+            glowP: "0 0 0 1px rgba(152,55,171,.28), 0 22px 80px rgba(152,55,171,.26)",
+            glowG: "0 0 0 1px rgba(108,161,52,.22), 0 22px 80px rgba(108,161,52,.20)",
+            glowY: "0 0 0 1px rgba(240,213,72,.22), 0 22px 80px rgba(240,213,72,.16)"
           }
         }
       }
@@ -72,38 +73,122 @@
 
       .divider { @apply h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent; }
 
-      /* Grid/arena (assinatura visual) */
-      .arena-grid {
-        background-image:
-          radial-gradient(circle at center, rgba(244,243,244,.10) 0 1px, transparent 1px 100%),
-          linear-gradient(to right, rgba(244,243,244,.06) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(244,243,244,.06) 1px, transparent 1px);
-        background-size: 24px 24px, 56px 56px, 56px 56px;
-        background-position: center, center, center;
-        opacity: .25;
-      }
-
-      /* BACKGROUNDS PADRÃO (coerentes com a logo) */
-      .bg-full {
+      /* ---------- FUNDO CHAMATIVO (ARENA TECH) ---------- */
+      /* Base escura com depth */
+      .bg-arena {
         background:
-          radial-gradient(circle at 50% 40%, rgba(152,55,171,.40), transparent 55%),
+          radial-gradient(circle at 50% 20%, rgba(152,55,171,.38), transparent 55%),
           radial-gradient(circle at 85% 75%, rgba(108,161,52,.18), transparent 55%),
-          radial-gradient(circle at 18% 78%, rgba(240,213,72,.10), transparent 50%),
-          linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.35));
+          radial-gradient(circle at 18% 78%, rgba(240,213,72,.12), transparent 50%),
+          linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.55));
       }
-      .bg-full-overlay { @apply bg-ink-base/65; }
 
-      .bg-content-a { background: linear-gradient(180deg, rgba(33,26,43,.92), rgba(7,3,15,1)); }
-      .bg-content-b { background: linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.70)); }
-      .bg-content-c { background: linear-gradient(180deg, #211A2B 0%, #166534 100%); }
+      /* “Arquibancada”: anéis concêntricos */
+      .arena-rings {
+        background:
+          radial-gradient(circle at 50% 55%,
+            transparent 0 42%,
+            rgba(244,243,244,.10) 42% 42.4%,
+            transparent 42.4% 48%,
+            rgba(244,243,244,.06) 48% 48.35%,
+            transparent 48.35% 55%,
+            rgba(244,243,244,.05) 55% 55.35%,
+            transparent 55.35% 100%);
+        opacity: .55;
+        filter: blur(.2px);
+      }
 
-      .bg-footer { background: linear-gradient(180deg, #166534 0%, #0b2f1a 100%); }
+      /* Grid + circuito (bem esportivo/tech) */
+      .arena-circuit {
+        background-image:
+          linear-gradient(to right, rgba(244,243,244,.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(244,243,244,.06) 1px, transparent 1px),
+          repeating-linear-gradient(135deg, rgba(152,55,171,.10) 0 2px, transparent 2px 18px),
+          repeating-linear-gradient(45deg, rgba(108,161,52,.10) 0 2px, transparent 2px 22px);
+        background-size: 64px 64px, 64px 64px, 320px 320px, 360px 360px;
+        opacity: .22;
+        mix-blend-mode: screen;
+      }
+
+      /* “Spotlights” de arena */
+      .arena-spotlights {
+        background:
+          radial-gradient(circle at 20% 15%, rgba(240,213,72,.10), transparent 45%),
+          radial-gradient(circle at 80% 15%, rgba(240,213,72,.08), transparent 45%),
+          radial-gradient(circle at 50% 8%, rgba(244,243,244,.08), transparent 55%);
+        opacity: .75;
+      }
+
+      /* Partículas (pontos) */
+      .arena-particles {
+        background-image:
+          radial-gradient(circle at 10% 20%, rgba(244,243,244,.14) 0 1px, transparent 2px),
+          radial-gradient(circle at 60% 30%, rgba(244,243,244,.12) 0 1px, transparent 2px),
+          radial-gradient(circle at 88% 42%, rgba(244,243,244,.10) 0 1px, transparent 2px),
+          radial-gradient(circle at 24% 68%, rgba(244,243,244,.10) 0 1px, transparent 2px),
+          radial-gradient(circle at 72% 78%, rgba(244,243,244,.10) 0 1px, transparent 2px);
+        opacity: .55;
+      }
+
+      /* Vinheta (não deixa “lavado”) */
+      .arena-vignette {
+        background:
+          radial-gradient(circle at 50% 40%, rgba(7,3,15,.35), rgba(7,3,15,.85));
+      }
+
+      /* Scan line (efeito “câmera/analytics”) */
+      .scanline {
+        background: linear-gradient(180deg,
+          transparent 0%,
+          rgba(240,213,72,.10) 48%,
+          rgba(240,213,72,.18) 50%,
+          rgba(240,213,72,.10) 52%,
+          transparent 100%);
+        opacity: .55;
+        animation: scan 7s linear infinite;
+        mix-blend-mode: screen;
+      }
+
+      /* Brilhos flutuantes (glows) */
+      .float-glow-1 { animation: floaty 9s ease-in-out infinite; }
+      .float-glow-2 { animation: floaty 11s ease-in-out infinite reverse; }
+      .float-glow-3 { animation: floaty 13s ease-in-out infinite; }
+
+      /* Conteúdos: duas variações (mais chamativas, mas consistentes) */
+      .bg-content-a {
+        background:
+          radial-gradient(circle at 18% 22%, rgba(152,55,171,.20), transparent 55%),
+          radial-gradient(circle at 85% 68%, rgba(108,161,52,.12), transparent 60%),
+          linear-gradient(180deg, rgba(33,26,43,.92), rgba(7,3,15,1));
+      }
+      .bg-content-b {
+        background:
+          radial-gradient(circle at 70% 15%, rgba(240,213,72,.12), transparent 55%),
+          radial-gradient(circle at 12% 70%, rgba(108,161,52,.10), transparent 60%),
+          linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.78));
+      }
+
+      /* Fechamento: deep -> forest (encaixa no footer) */
+      .bg-content-c {
+        background:
+          radial-gradient(circle at top, rgba(240,213,72,.12), transparent 55%),
+          radial-gradient(circle at 65% 45%, rgba(108,161,52,.10), transparent 58%),
+          linear-gradient(180deg, #211A2B 0%, #166534 100%);
+      }
 
       .fade-to-forest { background: linear-gradient(180deg, rgba(22,101,52,0) 0%, rgba(22,101,52,1) 100%); }
+      .bg-footer { background: linear-gradient(180deg, #166534 0%, #0b2f1a 100%); }
+    }
 
-      .glow-left { background: radial-gradient(circle at 18% 22%, rgba(152,55,171,.18), transparent 55%); }
-      .glow-right { background: radial-gradient(circle at 85% 68%, rgba(108,161,52,.10), transparent 60%); }
-      .glow-top-yellow { background: radial-gradient(circle at top, rgba(240,213,72,.12), transparent 55%); }
+    @layer utilities {
+      @keyframes scan {
+        0% { transform: translateY(-120%); }
+        100% { transform: translateY(120%); }
+      }
+      @keyframes floaty {
+        0%, 100% { transform: translate3d(0,0,0); }
+        50% { transform: translate3d(0,-18px,0); }
+      }
     }
   </style>
 
@@ -116,18 +201,32 @@
 
 <body class="bg-ink-base text-white font-sans antialiased">
 
-  <!-- HERO | TELA CHEIA -->
+  <!-- HERO | TELA CHEIA (muito mais “wow”) -->
   <section class="min-h-screen relative overflow-hidden flex flex-col justify-center items-center text-center px-6">
-    <div class="absolute inset-0 -z-10 bg-full"></div>
-    <div class="absolute inset-0 -z-10 arena-grid"></div>
-    <div class="absolute inset-0 -z-10 bg-full-overlay"></div>
+    <!-- Camadas do fundo -->
+    <div class="absolute inset-0 -z-10 bg-arena"></div>
+    <div class="absolute inset-0 -z-10 arena-rings"></div>
+    <div class="absolute inset-0 -z-10 arena-circuit"></div>
+    <div class="absolute inset-0 -z-10 arena-spotlights"></div>
+    <div class="absolute inset-0 -z-10 arena-particles"></div>
+
+    <!-- Glows grandes (inspirados na logo) -->
+    <div class="absolute -z-10 -top-44 left-1/2 -translate-x-1/2 w-[980px] h-[980px] rounded-full bg-brand-purple/25 blur-3xl float-glow-1"></div>
+    <div class="absolute -z-10 bottom-[-340px] right-[-260px] w-[820px] h-[820px] rounded-full bg-brand-green/18 blur-3xl float-glow-2"></div>
+    <div class="absolute -z-10 bottom-[-420px] left-[-260px] w-[820px] h-[820px] rounded-full bg-brand-yellow/10 blur-3xl float-glow-3"></div>
+
+    <!-- Scanline -->
+    <div class="absolute inset-x-0 top-0 bottom-0 -z-10 scanline"></div>
+
+    <!-- Vinheta final -->
+    <div class="absolute inset-0 -z-10 arena-vignette"></div>
 
     <div class="max-w-4xl">
-      <!-- Ajuste o src conforme seu projeto -->
+      <!-- Coloque sua logo aqui (ajuste o caminho) -->
       <img
-        src="assets/logos/padraSFundo.png"
+        src="padraSFundo.png"
         alt="SportFlyx"
-        class="w-60 md:w-80 mx-auto mb-6 drop-shadow-[0_18px_60px_rgba(152,55,171,.25)]"
+        class="w-24 md:w-28 mx-auto mb-6 drop-shadow-[0_18px_70px_rgba(152,55,171,.30)]"
       />
 
       <div class="kicker mx-auto mb-6 bg-white/5 text-white/80 border border-white/10">
@@ -147,35 +246,38 @@
       </p>
 
       <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="emBreve()" class="btn btn-primary">Painel p/ Quadras</button>
-        <button onclick="emBreve()" class="btn btn-secondary">Painel p/ Jogador</button>
+        <button onclick="emBreve()" class="btn btn-primary">Quero transformar minha quadra</button>
+        <button onclick="emBreve()" class="btn btn-secondary">Quero meus highlights</button>
+        <button onclick="emBreve()" class="btn btn-outline">Quero patrocinar uma quadra</button>
       </div>
 
       <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
         <div class="card">
-          <div class="text-2xl text-center text-brand-yellow font-semibold">Captura automática</div>
+          <div class="text-brand-yellow font-semibold">🎥 Captura automática</div>
           <div class="muted text-sm mt-1">Sem depender de alguém filmando.</div>
         </div>
         <div class="card">
-          <div class="text-center text-2xl text-brand-yellow font-semibold">Métricas reais</div>
+          <div class="text-brand-yellow font-semibold">📊 Métricas reais</div>
           <div class="muted text-sm mt-1">Entrega clara para patrocínio.</div>
         </div>
         <div class="card">
-          <div class="text-2xl text-brand-yellow font-semibold text-center">Quadra no comando</div>
+          <div class="text-brand-yellow font-semibold">🏟️ Quadra no comando</div>
           <div class="muted text-sm mt-1">Marca é convidada, não dona.</div>
         </div>
       </div>
 
-      <!-- <p class="mt-8 text-sm text-white/60">
+      <p class="mt-8 text-sm text-white/60">
         Lista de espera • Beta com quadras parceiras
-      </p> -->
+      </p>
     </div>
   </section>
 
   <!-- CONTEÚDO 1: O PROBLEMA -->
   <section class="py-20 px-6 relative overflow-hidden bg-content-a">
-    <div class="absolute inset-0 -z-10 glow-left"></div>
-    <div class="absolute inset-0 -z-10 glow-right"></div>
+    <!-- Detalhes extras no fundo (sem ficar pesado) -->
+    <div class="absolute inset-0 -z-10 arena-circuit"></div>
+    <div class="absolute -z-10 -top-56 left-[-200px] w-[680px] h-[680px] rounded-full bg-brand-purple/18 blur-3xl float-glow-1"></div>
+    <div class="absolute -z-10 bottom-[-260px] right-[-220px] w-[620px] h-[620px] rounded-full bg-brand-green/14 blur-3xl float-glow-2"></div>
 
     <div class="container-page">
       <div class="kicker mb-5 bg-white/5 text-white/80 border border-white/10">
@@ -214,6 +316,9 @@
 
   <!-- CONTEÚDO 2: SOLUÇÃO -->
   <section class="py-24 px-6 relative overflow-hidden bg-content-b">
+    <div class="absolute inset-0 -z-10 arena-rings"></div>
+    <div class="absolute inset-0 -z-10 arena-particles"></div>
+
     <div class="container-page">
       <div class="divider mb-12"></div>
 
@@ -255,9 +360,12 @@
 
   <!-- PATROCÍNIO | TELA CHEIA -->
   <section class="min-h-screen relative overflow-hidden flex flex-col justify-center items-center text-center px-6">
-    <div class="absolute inset-0 -z-10 bg-full"></div>
-    <div class="absolute inset-0 -z-10 arena-grid"></div>
-    <div class="absolute inset-0 -z-10 bg-full-overlay"></div>
+    <div class="absolute inset-0 -z-10 bg-arena"></div>
+    <div class="absolute inset-0 -z-10 arena-rings"></div>
+    <div class="absolute inset-0 -z-10 arena-circuit"></div>
+    <div class="absolute inset-0 -z-10 arena-spotlights"></div>
+    <div class="absolute inset-0 -z-10 arena-vignette"></div>
+    <div class="absolute inset-x-0 top-0 bottom-0 -z-10 scanline"></div>
 
     <div class="max-w-5xl">
       <div class="kicker mx-auto mb-6 bg-white/5 text-white/80 border border-white/10">
@@ -299,130 +407,9 @@
     </div>
   </section>
 
-  <!-- CONTEÚDO 3: COMO FUNCIONA -->
-  <section class="py-24 px-6 relative overflow-hidden bg-content-a">
-    <div class="absolute inset-0 -z-10 glow-left"></div>
-
-    <div class="container-page">
-      <h2 class="section-title mb-4">Como funciona na prática</h2>
-      <p class="muted mb-10 text-lg max-w-3xl">
-        Simples o suficiente para operar todo dia. Forte o suficiente para virar produto de patrocínio.
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <div class="kicker bg-white/5 text-white/80 border border-white/10 mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
-            passo 1
-          </div>
-          <div class="text-brand-yellow font-semibold text-xl">Captura</div>
-          <p class="muted text-sm mt-2">O sistema grava e organiza por jogo/campeonato.</p>
-        </div>
-
-        <div class="card">
-          <div class="kicker bg-white/5 text-white/80 border border-white/10 mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
-            passo 2
-          </div>
-          <div class="text-brand-yellow font-semibold text-xl">Clipes + dados</div>
-          <p class="muted text-sm mt-2">Highlights e métricas prontos para distribuição e prova de entrega.</p>
-        </div>
-
-        <div class="card">
-          <div class="kicker bg-white/5 text-white/80 border border-white/10 mb-4">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
-            passo 3
-          </div>
-          <div class="text-brand-yellow font-semibold text-xl">Patrocínio</div>
-          <p class="muted text-sm mt-2">Quadra cria campanhas; marca acompanha em modo delegado.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTEÚDO 4: PARA QUEM É -->
-  <section class="py-24 px-6 relative overflow-hidden bg-content-b">
-    <div class="absolute inset-0 -z-10 glow-right"></div>
-
-    <div class="container-page">
-      <h2 class="section-title mb-4">Feito para quem move o jogo</h2>
-      <p class="muted mb-10 text-lg max-w-3xl">
-        Três públicos, um ecossistema. Cada um ganha de um jeito — sem conflito de controle.
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card">
-          <div class="text-2xl mb-3">🏟️</div>
-          <div class="font-semibold text-brand-yellow mb-2">Quadras</div>
-          <ul class="space-y-2 text-sm text-white/80">
-            <li>• Conteúdo todo dia, sem equipe</li>
-            <li>• Nova receita: patrocínio e ativações</li>
-            <li>• Controle total de marcas e campanhas</li>
-          </ul>
-          <button onclick="emBreve()" class="btn btn-primary w-full mt-5">Quero vender patrocínio</button>
-        </div>
-
-        <div class="card">
-          <div class="text-2xl mb-3">🏃</div>
-          <div class="font-semibold text-brand-yellow mb-2">Atletas</div>
-          <ul class="space-y-2 text-sm text-white/80">
-            <li>• Highlights para postar</li>
-            <li>• Histórico de jogos</li>
-            <li>• Vitrine e motivação para voltar</li>
-          </ul>
-          <button onclick="emBreve()" class="btn btn-secondary w-full mt-5">Quero meus clipes</button>
-        </div>
-
-        <div class="card">
-          <div class="text-2xl mb-3">🏷️</div>
-          <div class="font-semibold text-brand-yellow mb-2">Marcas</div>
-          <ul class="space-y-2 text-sm text-white/80">
-            <li>• Relatório e transparência</li>
-            <li>• Alcance local com contexto</li>
-            <li>• Acesso delegado (sem “briga”)</li>
-          </ul>
-          <button onclick="emBreve()" class="btn btn-outline w-full mt-5">Quero patrocinar</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FUTURO | TELA CHEIA -->
-  <section class="min-h-screen relative overflow-hidden flex flex-col justify-center items-center text-center px-6">
-    <div class="absolute inset-0 -z-10 bg-full"></div>
-    <div class="absolute inset-0 -z-10 glow-top-yellow"></div>
-    <div class="absolute inset-0 -z-10 arena-grid"></div>
-    <div class="absolute inset-0 -z-10 bg-full-overlay"></div>
-
-    <div class="max-w-4xl">
-      <div class="kicker mx-auto mb-6 bg-white/5 text-white/80 border border-white/10">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
-        parceiro fundador
-      </div>
-
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        Entre cedo. <span class="text-brand-yellow">Cresça junto.</span>
-      </h2>
-
-      <p class="subtitle max-w-3xl mx-auto mb-10">
-        Estamos selecionando quadras e marcas para o beta.
-        Prioridade no acesso, aprendizado com o produto e construção do modelo comercial.
-      </p>
-
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="emBreve()" class="btn btn-primary px-8 py-4">Quero ser quadra parceira</button>
-        <button onclick="emBreve()" class="btn btn-secondary px-8 py-4">Quero ser marca parceira</button>
-      </div>
-
-      <p class="mt-8 text-sm text-white/60">
-        Sem spam • só atualizações e convite quando abrir acesso.
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ | CONTEÚDO (fecha em verde para encaixar no footer) -->
+  <!-- FECHAMENTO (conteúdo final + FAQ) -->
   <section class="py-24 px-6 relative overflow-hidden bg-content-c">
-    <div class="absolute inset-0 -z-10 glow-top-yellow"></div>
+    <div class="absolute inset-0 -z-10 arena-circuit"></div>
 
     <div class="container-page">
       <h2 class="section-title mb-10">FAQ</h2>
@@ -464,7 +451,6 @@
       </div>
     </div>
 
-    <!-- Fade para conectar no footer -->
     <div class="absolute inset-x-0 bottom-0 h-24 pointer-events-none fade-to-forest"></div>
   </section>
 
