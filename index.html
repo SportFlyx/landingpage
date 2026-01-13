@@ -2,465 +2,270 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>SportFlyx | Esporte, Dados e Patrocínio Inteligente</title>
+  <title>SportFlyx | O jogo passa. O registro fica.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="assets/logos/SFundoExtend.png" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Tokens baseados na LOGO -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              purple: "#9837AB",
-              purple2: "#77138D",
-              deep: "#211A2B",
-              green: "#6CA134",
-              yellow: "#F0D548",
-              ice: "#F4F3F4"
-            },
-            ink: { base: "#07030F" }
+            purple: "#9837AB",
+            green: "#6CA134",
+            yellow: "#F0D548",
+            deep: "#211A2B",
+            ink: "#07030F"
           },
           boxShadow: {
-            glowP: "0 0 0 1px rgba(152,55,171,.28), 0 22px 80px rgba(152,55,171,.26)",
-            glowG: "0 0 0 1px rgba(108,161,52,.22), 0 22px 80px rgba(108,161,52,.20)",
-            glowY: "0 0 0 1px rgba(240,213,72,.22), 0 22px 80px rgba(240,213,72,.16)"
+            glow: "0 0 40px rgba(240,213,72,.35)"
           }
         }
       }
     }
   </script>
 
-  <style type="text/tailwindcss">
-    @layer base { html { scroll-behavior: smooth; } }
-
-    @layer components {
-      .container-page { @apply max-w-6xl mx-auto px-6; }
-
-      .kicker {
-        @apply inline-flex items-center gap-2 px-3 py-1 rounded-full
-               text-xs font-semibold tracking-widest uppercase;
-      }
-
-      .title { @apply text-5xl md:text-6xl font-bold tracking-tight; }
-      .section-title { @apply text-3xl md:text-4xl font-bold tracking-tight; }
-      .subtitle { @apply text-lg md:text-xl text-white/80 leading-relaxed; }
-      .muted { @apply text-white/70; }
-
-      .btn {
-        @apply inline-flex items-center justify-center px-6 py-3 rounded-xl
-               font-semibold transition duration-200;
-        @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow/80
-               focus-visible:ring-offset-2 focus-visible:ring-offset-ink-base;
-      }
-      .btn-primary { @apply bg-brand-purple hover:brightness-110 text-white shadow-glowP; }
-      .btn-secondary { @apply bg-brand-yellow hover:brightness-105 text-brand-deep shadow-glowY; }
-      .btn-outline { @apply border border-brand-green/60 hover:border-brand-green text-white hover:bg-brand-green/10; }
-
-      .card {
-        @apply rounded-2xl border border-white/10 bg-white/5 backdrop-blur
-               p-6 transition;
-      }
-      .card:hover { @apply border-white/15; }
-
-      .card-emphasis {
-        @apply rounded-2xl border border-brand-green/25 bg-white/5 backdrop-blur
-               p-7 shadow-glowG;
-      }
-
-      .divider { @apply h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent; }
-
-      /* ---------- FUNDO CHAMATIVO (ARENA TECH) ---------- */
-      /* Base escura com depth */
-      .bg-arena {
-        background:
-          radial-gradient(circle at 50% 20%, rgba(152,55,171,.38), transparent 55%),
-          radial-gradient(circle at 85% 75%, rgba(108,161,52,.18), transparent 55%),
-          radial-gradient(circle at 18% 78%, rgba(240,213,72,.12), transparent 50%),
-          linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.55));
-      }
-
-      /* “Arquibancada”: anéis concêntricos */
-      .arena-rings {
-        background:
-          radial-gradient(circle at 50% 55%,
-            transparent 0 42%,
-            rgba(244,243,244,.10) 42% 42.4%,
-            transparent 42.4% 48%,
-            rgba(244,243,244,.06) 48% 48.35%,
-            transparent 48.35% 55%,
-            rgba(244,243,244,.05) 55% 55.35%,
-            transparent 55.35% 100%);
-        opacity: .55;
-        filter: blur(.2px);
-      }
-
-      /* Grid + circuito (bem esportivo/tech) */
-      .arena-circuit {
-        background-image:
-          linear-gradient(to right, rgba(244,243,244,.06) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(244,243,244,.06) 1px, transparent 1px),
-          repeating-linear-gradient(135deg, rgba(152,55,171,.10) 0 2px, transparent 2px 18px),
-          repeating-linear-gradient(45deg, rgba(108,161,52,.10) 0 2px, transparent 2px 22px);
-        background-size: 64px 64px, 64px 64px, 320px 320px, 360px 360px;
-        opacity: .22;
-        mix-blend-mode: screen;
-      }
-
-      /* “Spotlights” de arena */
-      .arena-spotlights {
-        background:
-          radial-gradient(circle at 20% 15%, rgba(240,213,72,.10), transparent 45%),
-          radial-gradient(circle at 80% 15%, rgba(240,213,72,.08), transparent 45%),
-          radial-gradient(circle at 50% 8%, rgba(244,243,244,.08), transparent 55%);
-        opacity: .75;
-      }
-
-      /* Partículas (pontos) */
-      .arena-particles {
-        background-image:
-          radial-gradient(circle at 10% 20%, rgba(244,243,244,.14) 0 1px, transparent 2px),
-          radial-gradient(circle at 60% 30%, rgba(244,243,244,.12) 0 1px, transparent 2px),
-          radial-gradient(circle at 88% 42%, rgba(244,243,244,.10) 0 1px, transparent 2px),
-          radial-gradient(circle at 24% 68%, rgba(244,243,244,.10) 0 1px, transparent 2px),
-          radial-gradient(circle at 72% 78%, rgba(244,243,244,.10) 0 1px, transparent 2px);
-        opacity: .55;
-      }
-
-      /* Vinheta (não deixa “lavado”) */
-      .arena-vignette {
-        background:
-          radial-gradient(circle at 50% 40%, rgba(7,3,15,.35), rgba(7,3,15,.85));
-      }
-
-      /* Scan line (efeito “câmera/analytics”) */
-      .scanline {
-        background: linear-gradient(180deg,
-          transparent 0%,
-          rgba(240,213,72,.10) 48%,
-          rgba(240,213,72,.18) 50%,
-          rgba(240,213,72,.10) 52%,
-          transparent 100%);
-        opacity: .55;
-        animation: scan 7s linear infinite;
-        mix-blend-mode: screen;
-      }
-
-      /* Brilhos flutuantes (glows) */
-      .float-glow-1 { animation: floaty 9s ease-in-out infinite; }
-      .float-glow-2 { animation: floaty 11s ease-in-out infinite reverse; }
-      .float-glow-3 { animation: floaty 13s ease-in-out infinite; }
-
-      /* Conteúdos: duas variações (mais chamativas, mas consistentes) */
-      .bg-content-a {
-        background:
-          radial-gradient(circle at 18% 22%, rgba(152,55,171,.20), transparent 55%),
-          radial-gradient(circle at 85% 68%, rgba(108,161,52,.12), transparent 60%),
-          linear-gradient(180deg, rgba(33,26,43,.92), rgba(7,3,15,1));
-      }
-      .bg-content-b {
-        background:
-          radial-gradient(circle at 70% 15%, rgba(240,213,72,.12), transparent 55%),
-          radial-gradient(circle at 12% 70%, rgba(108,161,52,.10), transparent 60%),
-          linear-gradient(180deg, rgba(7,3,15,1), rgba(33,26,43,.78));
-      }
-
-      /* Fechamento: deep -> forest (encaixa no footer) */
-      .bg-content-c {
-        background:
-          radial-gradient(circle at top, rgba(240,213,72,.12), transparent 55%),
-          radial-gradient(circle at 65% 45%, rgba(108,161,52,.10), transparent 58%),
-          linear-gradient(180deg, #211A2B 0%, #166534 100%);
-      }
-
-      .fade-to-forest { background: linear-gradient(180deg, rgba(22,101,52,0) 0%, rgba(22,101,52,1) 100%); }
-      .bg-footer { background: linear-gradient(180deg, #166534 0%, #0b2f1a 100%); }
+  <style>
+    .bg-arena {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(152,55,171,.35), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(108,161,52,.18), transparent 55%),
+        linear-gradient(180deg, #07030F, #211A2B);
     }
-
-    @layer utilities {
-      @keyframes scan {
-        0% { transform: translateY(-120%); }
-        100% { transform: translateY(120%); }
-      }
-      @keyframes floaty {
-        0%, 100% { transform: translate3d(0,0,0); }
-        50% { transform: translate3d(0,-18px,0); }
-      }
+    .scanline {
+      background: linear-gradient(
+        180deg,
+        transparent,
+        rgba(240,213,72,.15),
+        transparent
+      );
+      animation: scan 6s linear infinite;
+    }
+    @keyframes scan {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(100%); }
     }
   </style>
 
   <script>
     function emBreve() {
-      alert("🚀 Em breve o SportFlyx estará disponível! Entre na lista de espera.");
+      alert("🚀 Em breve o SportFlyx estará disponível!");
     }
   </script>
 </head>
 
-<body class="bg-ink-base text-white font-sans antialiased">
+<body class="bg-ink text-white antialiased">
 
-  <!-- HERO | TELA CHEIA (muito mais “wow”) -->
-  <section class="min-h-screen relative overflow-hidden flex flex-col justify-center items-center text-center px-6">
-    <!-- Camadas do fundo -->
-    <div class="absolute inset-0 -z-10 bg-arena"></div>
-    <div class="absolute inset-0 -z-10 arena-rings"></div>
-    <div class="absolute inset-0 -z-10 arena-circuit"></div>
-    <div class="absolute inset-0 -z-10 arena-spotlights"></div>
-    <div class="absolute inset-0 -z-10 arena-particles"></div>
+<!-- ================= HERO ================= -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-6 overflow-hidden">
+  <div class="absolute inset-0 bg-arena"></div>
+  <div class="absolute inset-0 scanline opacity-40"></div>
 
-    <!-- Glows grandes (inspirados na logo) -->
-    <div class="absolute -z-10 -top-44 left-1/2 -translate-x-1/2 w-[980px] h-[980px] rounded-full bg-brand-purple/25 blur-3xl float-glow-1"></div>
-    <div class="absolute -z-10 bottom-[-340px] right-[-260px] w-[820px] h-[820px] rounded-full bg-brand-green/18 blur-3xl float-glow-2"></div>
-    <div class="absolute -z-10 bottom-[-420px] left-[-260px] w-[820px] h-[820px] rounded-full bg-brand-yellow/10 blur-3xl float-glow-3"></div>
+  <div class="relative z-10 max-w-5xl">
+    <p class="uppercase tracking-widest text-xs text-yellow mb-4">
+      atletas • quadras • marcas
+    </p>
 
-    <!-- Scanline -->
-    <div class="absolute inset-x-0 top-0 bottom-0 -z-10 scanline"></div>
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
+      Seu jogo não é amador.<br>
+      <span class="text-yellow">O registro também não deveria ser.</span>
+    </h1>
 
-    <!-- Vinheta final -->
-    <div class="absolute inset-0 -z-10 arena-vignette"></div>
+    <p class="text-lg text-white/80 max-w-3xl mx-auto mb-10">
+      O SportFlyx grava automaticamente partidas,
+      transforma lances em conteúdo profissional
+      e organiza dados que geram reconhecimento e receita.
+    </p>
 
-    <div class="max-w-4xl">
-      <!-- Coloque sua logo aqui (ajuste o caminho) -->
-      <img
-        src="padraSFundo.png"
-        alt="SportFlyx"
-        class="w-24 md:w-28 mx-auto mb-6 drop-shadow-[0_18px_70px_rgba(152,55,171,.30)]"
-      />
-
-      <div class="kicker mx-auto mb-6 bg-white/5 text-white/80 border border-white/10">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
-        arena • dados • monetização
-      </div>
-
-      <h1 class="title mb-6">
-        Sua quadra vira <span class="text-brand-yellow">mídia</span>.<br />
-        Seus jogos viram <span class="text-brand-yellow">valor</span>.
-      </h1>
-
-      <p class="subtitle max-w-3xl mx-auto mb-10">
-        O SportFlyx grava automaticamente, transforma partidas em clipes e métricas
-        e permite patrocínios com <span class="text-white font-semibold">entrega comprovada</span>.
-        <span class="text-white/90">A quadra controla tudo.</span>
-      </p>
-
-      <div class="flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="emBreve()" class="btn btn-primary">Quero transformar minha quadra</button>
-        <button onclick="emBreve()" class="btn btn-secondary">Quero meus highlights</button>
-        <button onclick="emBreve()" class="btn btn-outline">Quero patrocinar uma quadra</button>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
-        <div class="card">
-          <div class="text-brand-yellow font-semibold">🎥 Captura automática</div>
-          <div class="muted text-sm mt-1">Sem depender de alguém filmando.</div>
-        </div>
-        <div class="card">
-          <div class="text-brand-yellow font-semibold">📊 Métricas reais</div>
-          <div class="muted text-sm mt-1">Entrega clara para patrocínio.</div>
-        </div>
-        <div class="card">
-          <div class="text-brand-yellow font-semibold">🏟️ Quadra no comando</div>
-          <div class="muted text-sm mt-1">Marca é convidada, não dona.</div>
-        </div>
-      </div>
-
-      <p class="mt-8 text-sm text-white/60">
-        Lista de espera • Beta com quadras parceiras
-      </p>
-    </div>
-  </section>
-
-  <!-- CONTEÚDO 1: O PROBLEMA -->
-  <section class="py-20 px-6 relative overflow-hidden bg-content-a">
-    <!-- Detalhes extras no fundo (sem ficar pesado) -->
-    <div class="absolute inset-0 -z-10 arena-circuit"></div>
-    <div class="absolute -z-10 -top-56 left-[-200px] w-[680px] h-[680px] rounded-full bg-brand-purple/18 blur-3xl float-glow-1"></div>
-    <div class="absolute -z-10 bottom-[-260px] right-[-220px] w-[620px] h-[620px] rounded-full bg-brand-green/14 blur-3xl float-glow-2"></div>
-
-    <div class="container-page">
-      <div class="kicker mb-5 bg-white/5 text-white/80 border border-white/10">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-        o que trava o esporte amador
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 class="section-title mb-4">
-            Jogo acontece. Conteúdo some. Negócio não nasce.
-          </h2>
-          <p class="muted text-lg">
-            Sem gravação e sem dados, não existe prova de entrega. Sem prova, o patrocínio vira “achismo”.
-            E a quadra deixa dinheiro na mesa.
-          </p>
-        </div>
-
-        <div class="grid gap-4">
-          <div class="card">
-            <div class="font-semibold text-brand-yellow">Sem conteúdo</div>
-            <div class="muted text-sm mt-1">O jogo não vira clipe, não vira hype, não vira recorrência.</div>
-          </div>
-          <div class="card">
-            <div class="font-semibold text-brand-yellow">Sem dados</div>
-            <div class="muted text-sm mt-1">Sem métricas, patrocínio não escala.</div>
-          </div>
-          <div class="card">
-            <div class="font-semibold text-brand-yellow">Sem governança</div>
-            <div class="muted text-sm mt-1">Quem manda no espaço precisa controlar marca, campanha e acesso.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTEÚDO 2: SOLUÇÃO -->
-  <section class="py-24 px-6 relative overflow-hidden bg-content-b">
-    <div class="absolute inset-0 -z-10 arena-rings"></div>
-    <div class="absolute inset-0 -z-10 arena-particles"></div>
-
-    <div class="container-page">
-      <div class="divider mb-12"></div>
-
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="section-title mb-6">A solução SportFlyx</h2>
-
-          <p class="muted mb-8 text-lg">
-            O SportFlyx transforma a quadra em plataforma: grava, organiza, mede e monetiza.
-            Tudo com uma regra simples: <b>quem controla o espaço, controla a marca.</b>
-          </p>
-
-          <ul class="space-y-4 text-white/85">
-            <li class="flex gap-3 items-start"><span class="text-brand-yellow">🎥</span><span><b>Gravação automática</b> por gesto ou evento</span></li>
-            <li class="flex gap-3 items-start"><span class="text-brand-green">✂️</span><span><b>Highlights</b> prontos para postar</span></li>
-            <li class="flex gap-3 items-start"><span class="text-brand-yellow">📊</span><span><b>Métricas</b> de audiência e engajamento</span></li>
-            <li class="flex gap-3 items-start"><span class="text-brand-green">📢</span><span><b>Inventário</b> de patrocínio por quadra/placement</span></li>
-          </ul>
-        </div>
-
-        <div class="card-emphasis">
-          <p class="text-brand-yellow font-semibold mb-3">Descentralizado como uma arena</p>
-          <p class="text-white/80 leading-relaxed">
-            Inteligência na quadra para capturar e organizar com estabilidade.
-            A nuvem consolida relatórios e histórico. Escala sem virar “trambolho” operacional.
-          </p>
-
-          <div class="mt-6 grid grid-cols-3 gap-3 text-xs text-white/70">
-            <div class="rounded-xl bg-ink-base/40 border border-white/10 px-3 py-2">Captura</div>
-            <div class="rounded-xl bg-ink-base/40 border border-white/10 px-3 py-2">Organiza</div>
-            <div class="rounded-xl bg-ink-base/40 border border-white/10 px-3 py-2">Prova</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider mt-12"></div>
-    </div>
-  </section>
-
-  <!-- PATROCÍNIO | TELA CHEIA -->
-  <section class="min-h-screen relative overflow-hidden flex flex-col justify-center items-center text-center px-6">
-    <div class="absolute inset-0 -z-10 bg-arena"></div>
-    <div class="absolute inset-0 -z-10 arena-rings"></div>
-    <div class="absolute inset-0 -z-10 arena-circuit"></div>
-    <div class="absolute inset-0 -z-10 arena-spotlights"></div>
-    <div class="absolute inset-0 -z-10 arena-vignette"></div>
-    <div class="absolute inset-x-0 top-0 bottom-0 -z-10 scanline"></div>
-
-    <div class="max-w-5xl">
-      <div class="kicker mx-auto mb-6 bg-white/5 text-white/80 border border-white/10">
-        <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-        marca convidada • quadra dona
-      </div>
-
-      <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        Patrocínio com <span class="text-brand-yellow">prova</span>, não achismo
-      </h2>
-
-      <p class="subtitle max-w-3xl mx-auto mb-12">
-        A quadra cria a marca, concede acesso e controla campanhas.
-        A marca acompanha métricas e relatórios com acesso delegado.
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        <div class="card">
-          <div class="text-2xl mb-3">🏟️</div>
-          <div class="font-semibold mb-1 text-brand-yellow">Governança</div>
-          <div class="muted text-sm">Ativar/desativar é decisão da quadra.</div>
-        </div>
-        <div class="card">
-          <div class="text-2xl mb-3">📍</div>
-          <div class="font-semibold mb-1 text-brand-yellow">Contexto</div>
-          <div class="muted text-sm">Entrega por quadra/campeonato/placement.</div>
-        </div>
-        <div class="card">
-          <div class="text-2xl mb-3">📊</div>
-          <div class="font-semibold mb-1 text-brand-yellow">Relatórios</div>
-          <div class="muted text-sm">Renovação baseada em dados.</div>
-        </div>
-      </div>
-
-      <div class="mt-10 flex flex-col md:flex-row gap-4 justify-center">
-        <button onclick="emBreve()" class="btn btn-secondary px-8 py-4">Quero patrocinar com dados</button>
-        <button onclick="emBreve()" class="btn btn-primary px-8 py-4">Quero instalar na minha quadra</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FECHAMENTO (conteúdo final + FAQ) -->
-  <section class="py-24 px-6 relative overflow-hidden bg-content-c">
-    <div class="absolute inset-0 -z-10 arena-circuit"></div>
-
-    <div class="container-page">
-      <h2 class="section-title mb-10">FAQ</h2>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="card">
-          <div class="font-semibold text-brand-yellow">A marca consegue criar campanha sozinha?</div>
-          <p class="muted text-sm mt-2">
-            No SportFlyx, a quadra é dona do espaço. A marca recebe acesso delegado para acompanhar métricas.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="font-semibold text-brand-yellow">A quadra perde controle do patrocínio?</div>
-          <p class="muted text-sm mt-2">
-            Não. A quadra cria a marca, convida usuários e pode ativar/desativar quando quiser.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="font-semibold text-brand-yellow">Dá para usar em campeonatos?</div>
-          <p class="muted text-sm mt-2">
-            Sim — o sistema é pensado para jogos recorrentes, ligas e eventos, com organização por contexto.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="font-semibold text-brand-yellow">Como entram as métricas?</div>
-          <p class="muted text-sm mt-2">
-            Métricas pertencem à quadra e são exibidas para a marca por recorte (campanha/placement/período).
-          </p>
-        </div>
-      </div>
-
-      <div class="mt-10 text-center">
-        <button onclick="emBreve()" class="btn btn-primary px-10 py-4">
-          Entrar na lista de espera
-        </button>
-      </div>
+    <div class="flex flex-col md:flex-row gap-4 justify-center mb-12">
+      <button onclick="emBreve()"
+        class="bg-yellow text-black px-10 py-4 rounded-xl font-semibold shadow-glow hover:scale-105 transition">
+        Quero meu jogo registrado
+      </button>
+      <button onclick="emBreve()"
+        class="border border-white/30 px-10 py-4 rounded-xl hover:bg-white/10 transition">
+        Sou gestor de quadra
+      </button>
     </div>
 
-    <div class="absolute inset-x-0 bottom-0 h-24 pointer-events-none fade-to-forest"></div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-10 text-center text-white/75 text-sm relative -mt-px bg-footer">
-    <div class="container-page">
-      <div class="h-px w-full bg-gradient-to-r from-transparent via-white/25 to-transparent mb-6"></div>
-      © 2026 SportFlyx — Todos os direitos reservados
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-white/70">
+      <div class="border border-white/10 rounded-xl px-4 py-3">🎥 Gravação automática</div>
+      <div class="border border-white/10 rounded-xl px-4 py-3">✂️ Highlights em minutos</div>
+      <div class="border border-white/10 rounded-xl px-4 py-3">📊 Métricas reais</div>
     </div>
-  </footer>
+
+    <p class="mt-6 text-xs text-white/50">
+      Sem operador • Sem celular • Sem edição manual
+    </p>
+  </div>
+</section>
+
+<!-- ================= PROBLEMA ================= -->
+<section class="py-28 px-6 bg-deep">
+  <div class="max-w-5xl mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-6">
+      Todo jogo termina.<br>Poucos ficam.
+    </h2>
+    <p class="text-white/70 text-lg mb-14">
+      Sem gravação, o lance morre.
+      Sem registro, o atleta some.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-10 text-left">
+      <div class="border border-white/10 rounded-xl p-6">
+        <h4 class="text-yellow font-semibold mb-3">Hoje</h4>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>• Jogo não é gravado</li>
+          <li>• Lance se perde</li>
+          <li>• Atleta depende de stories</li>
+        </ul>
+      </div>
+      <div class="border border-white/10 rounded-xl p-6">
+        <h4 class="text-yellow font-semibold mb-3">Com SportFlyx</h4>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li>• Jogo fica registrado</li>
+          <li>• Lance vira conteúdo</li>
+          <li>• Histórico cresce automaticamente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FULL ATLETA ================= -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-6 bg-arena">
+  <div class="max-w-5xl">
+    <p class="uppercase tracking-widest text-xs text-yellow mb-4">
+      para quem joga sério
+    </p>
+
+    <h2 class="text-5xl font-bold mb-6">
+      Se ninguém filmou,<br>
+      <span class="text-yellow">foi como se não tivesse acontecido.</span>
+    </h2>
+
+    <p class="text-lg text-white/80 max-w-3xl mx-auto mb-10">
+      O SportFlyx garante que seus jogos,
+      seus lances e sua evolução
+      fiquem registrados — automaticamente.
+    </p>
+
+    <button onclick="emBreve()"
+      class="bg-yellow text-black px-12 py-5 rounded-xl font-semibold text-lg shadow-glow animate-pulse">
+      Quero que meus jogos fiquem
+    </button>
+
+    <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="border border-white/10 rounded-xl py-4">
+        <p class="text-2xl font-bold text-yellow">100%</p>
+        <p class="text-xs text-white/60">automático</p>
+      </div>
+      <div class="border border-white/10 rounded-xl py-4">
+        <p class="text-2xl font-bold text-yellow">0</p>
+        <p class="text-xs text-white/60">dependência</p>
+      </div>
+      <div class="border border-white/10 rounded-xl py-4">
+        <p class="text-2xl font-bold text-yellow">∞</p>
+        <p class="text-xs text-white/60">histórico</p>
+      </div>
+      <div class="border border-white/10 rounded-xl py-4">
+        <p class="text-2xl font-bold text-yellow">+</p>
+        <p class="text-xs text-white/60">exposição</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUADRA ================= -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-6 bg-arena">
+  <div class="max-w-5xl">
+    <p class="uppercase tracking-widest text-xs text-yellow mb-4">
+      para quem controla o espaço
+    </p>
+
+    <h2 class="text-5xl font-bold mb-6">
+      Quando o atleta aparece,<br>
+      <span class="text-yellow">a quadra fatura.</span>
+    </h2>
+
+    <p class="text-lg text-white/80 max-w-3xl mx-auto mb-10">
+      Jogos gravados viram audiência.
+      Audiência vira patrocínio.
+      Patrocínio vira receita recorrente.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-10 text-sm">
+      <div class="border border-white/10 rounded-xl p-4">📍 Inventário por quadra</div>
+      <div class="border border-white/10 rounded-xl p-4">🏆 Contexto por campeonato</div>
+      <div class="border border-white/10 rounded-xl p-4">📊 Relatórios por campanha</div>
+    </div>
+
+    <button onclick="emBreve()"
+      class="bg-purple px-12 py-5 rounded-xl font-semibold text-lg hover:brightness-110 transition">
+      Quero transformar jogo em dinheiro
+    </button>
+  </div>
+</section>
+
+<!-- ================= MARCA ================= -->
+<section class="relative min-h-screen flex items-center justify-center text-center px-6 bg-arena">
+  <div class="max-w-5xl">
+    <p class="uppercase tracking-widest text-xs text-yellow mb-4">
+      para marcas
+    </p>
+
+    <h2 class="text-5xl font-bold mb-6">
+      Patrocínio sem prova<br>
+      <span class="text-yellow">é aposta.</span>
+    </h2>
+
+    <p class="text-lg text-white/80 max-w-3xl mx-auto mb-10">
+      Métricas verificáveis,
+      contexto esportivo
+      e entrega comprovada.
+    </p>
+
+    <button onclick="emBreve()"
+      class="bg-yellow text-black px-12 py-5 rounded-xl font-semibold text-lg shadow-glow">
+      Quero patrocinar com dados
+    </button>
+
+    <p class="mt-6 text-xs text-white/50">
+      Acesso delegado • Governança da quadra • Relatórios claros
+    </p>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="py-32 px-6 bg-deep text-center">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold mb-6">
+      O jogo passa.<br>O registro fica.
+    </h2>
+
+    <p class="text-white/70 mb-12">
+      Entre na lista de espera
+      e faça parte das primeiras quadras
+      com memória esportiva automática.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-12 text-sm text-white/70">
+      <div class="border border-white/10 rounded-xl p-4">🎥 Jogos registrados</div>
+      <div class="border border-white/10 rounded-xl p-4">📊 Dados que provam valor</div>
+      <div class="border border-white/10 rounded-xl p-4">💰 Monetização organizada</div>
+    </div>
+
+    <button onclick="emBreve()"
+      class="bg-yellow text-black px-14 py-5 rounded-xl font-semibold text-lg shadow-glow">
+      Entrar na lista de espera
+    </button>
+  </div>
+</section>
+
+<footer class="py-10 text-center text-white/50 text-sm bg-ink">
+  © 2026 SportFlyx — Todos os direitos reservados
+</footer>
 
 </body>
 </html>
