@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>SportFlyx | O jogo passa. O registro fica.</title>
+  <title>SportFlyx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/logos/SFundoExtend.png" type="image/x-icon">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -50,7 +51,7 @@
 
   <script>
     function emBreve() {
-      alert("🚀 Em breve o SportFlyx estará disponível!");
+      window.location.href='/assets/page/breve.html?from=' + encodeURIComponent(window.location.href);
     }
   </script>
 </head>
@@ -63,8 +64,9 @@
   <div class="absolute inset-0 scanline opacity-40"></div>
 
   <div class="relative z-10 max-w-5xl">
+    <img src="assets/logos/padraSFundo.png" alt="Logo SportFlyx" class="mx-auto mb-6 w-32 md:w-40" />
     <p class="uppercase tracking-widest text-xs text-yellow mb-4">
-      atletas • quadras • marcas
+      O jogo passa, O registro fica
     </p>
 
     <h1 class="text-5xl md:text-6xl font-extrabold mb-6">
